@@ -1,0 +1,26 @@
+form {
+    background-color: #47475c;
+    border-radius: 5%;
+}
+
+label {
+    color: #f0f0f0;
+}
+
+input, select {
+    background-color: #43505da9 !important;
+    color: #f0f0f0 !important;
+    border: 1px solid #444 !important;
+    border-radius: 4px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input::placeholder {
+    color: #888 !important;
+}
+
+.form-group {
+    padding: 15px
+}
