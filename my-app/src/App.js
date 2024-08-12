@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Header';
 import AddTenantForm from './AddTenantForm';
+import TenantList from './TenantList';
 
 function App() {
   return (
@@ -11,11 +12,13 @@ function App() {
       </div>
       <div className='tenant-section'> 
         <div className='add-tenant-form'>
-          <AddTenantForm/>
+            <AddTenantForm/>
+        </div>
+        <div className='tenant-list'>
+          <TenantList />
         </div>
       </div>
     </div>
-    
   );
 }
 
