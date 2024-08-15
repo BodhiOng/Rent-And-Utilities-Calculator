@@ -11,7 +11,7 @@ function TenantListForm({ tenants, onDeleteTenant }) {
                     <ul>
                         {tenants.map((tenant, index) => (
                             <li key={index}>
-                                {tenant.tenantName} - {tenant.roomType}
+                                {tenant.tenantName}, {tenant.roomType} room
                                 <button
                                     className='delete-button'
                                     onClick={() => onDeleteTenant(tenant.id)}

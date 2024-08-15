@@ -52,14 +52,28 @@ li {
     color: white;
     font-size: 1.1rem;
     transition: background-color 0.3s, transform 0.2s;
-}
-
-li:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .empty-list-message {
     color: white;
     text-align: center;
+}
+
+.delete-button {
+    float: right;
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding-inline: 10px;
+    color: white;
+    cursor: pointer;
+
+}
+
+.delete-button:hover {
+    background-color: rgba(255, 255, 255, 0.147);
+    border-color: #666;
 }

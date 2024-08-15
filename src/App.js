@@ -24,17 +24,17 @@ function App() {
   const handleDeleteTenant = (tenantId) => {
     const updatedTenants = tenants.filter(tenant => tenant.id !== tenantId);
     setTenants(updatedTenants);
-    localStorage.setItem('tenants', JSON.stringify(updatedTenants))
+    localStorage.setItem('tenants', JSON.stringify(updatedTenants));
   };
 
   useEffect(() => {
     if (formRef.current) {
-      setFormHeight(formRef.current.clientHeight)
+      setFormHeight(formRef.current.clientHeight);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('tenants', JSON.stringify(tenants))
+    localStorage.setItem('tenants', JSON.stringify(tenants));
   }, [tenants]);
 
   return (

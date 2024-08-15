@@ -39,9 +39,9 @@ function AddTenantForm({ onAddTenant }) {
                     onChange={(e) => setRoomType(e.target.value)}
                 >
                     <option value='' disable selected>Select your room type</option>
-                    <option value='small'>Small</option>
-                    <option value='medium'>Medium</option>
-                    <option value='master'>Master</option>
+                    <option value='Small'>Small</option>
+                    <option value='Medium'>Medium</option>
+                    <option value='Master'>Master</option>
                 </select>
             </div>
             <div className="button-div">
