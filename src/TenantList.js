@@ -2,7 +2,7 @@ import './TenantList.css';
 
 function TenantList({ tenants }) {
     return(
-        <div className='tenant-list'>
+        <div className='tenant-list-div'>
             <div className='list-title'>
                 <p className='list-title-text'>Tenant list</p>
             </div>

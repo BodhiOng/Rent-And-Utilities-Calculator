@@ -11,21 +11,16 @@ html, body {
 
 .tenant-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-between;
   margin-top: 20px;
+  margin-inline: 10%;
+  gap: 20px;
 }
 
-.add-tenant-form {
+.add-tenant-form, .tenant-list {
   width: 100%;
-  max-width: 500px;
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.tenant-list {
-  width: 100%;
-  max-width: 500px;
-  padding: 20px;
-  border-radius: 8px;
+  max-width: calc(50% - 10px);
+  height: auto;
+  box-sizing: border-box;
 }
