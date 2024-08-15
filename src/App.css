@@ -18,7 +18,7 @@ html, body {
   gap: 20px;
 }
 
-.add-tenant-form, .tenant-list {
+.add-tenant-form, .tenant-list-form {
   width: 100%;
   max-width: calc(50% - 10px);
   height: auto;

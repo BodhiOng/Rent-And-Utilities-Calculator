@@ -13,6 +13,7 @@
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     overflow-y: auto;
+    justify-content: center;
 }
 
 .list-title {
@@ -56,4 +57,9 @@ li {
 li:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: translateY(-2px);
+}
+
+.empty-list-message {
+    color: white;
+    text-align: center;
 }
