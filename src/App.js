@@ -2,9 +2,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Header from './Header';
 import AddTenantForm from './AddTenantForm';
-import TenantList from './TenantListForm';
-import { useEffect, useRef, useState } from 'react';
 import TenantListForm from './TenantListForm';
+import MonthlyExpenses from './MonthlyExpenses';
+import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
@@ -51,6 +51,9 @@ function App() {
         <div className='tenant-list-form' style={{ height : `${formHeight}px` }}>
           <TenantListForm tenants={tenants} onDeleteTenant={handleDeleteTenant}/>
         </div>
+      </div>
+      <div className='monthly-expenses-form'>
+        <MonthlyExpenses/>
       </div>
     </div>
   );

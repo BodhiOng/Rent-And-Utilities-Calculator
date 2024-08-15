@@ -1,0 +1,39 @@
+body {
+    font-family: Roboto, Monsterrat;
+}
+
+.monthly-expenses-form > .monthly-expenses-form form {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.expenses-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px 0;
+    background-color: rgb(81, 79, 102);
+    border-bottom: 2px solid #444;
+    border-radius: 10px 10px 0 0;
+}
+
+.expenses-title-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 10px 0px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    margin: 0;
+}
+
+.utilities-section .form-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.utilities-section .form-group label {
+    margin-right: 20px;
+}
