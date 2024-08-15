@@ -5,6 +5,7 @@ import AddTenantForm from './AddTenantForm';
 import TenantList from './TenantListForm';
 import { useEffect, useRef, useState } from 'react';
 import TenantListForm from './TenantListForm';
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
   const [tenants, setTenants] = useState(() => {
@@ -16,7 +17,8 @@ function App() {
   const formRef = useRef(null);
   
   const handleAddTenant = (tenant) => {
-    const newTenants = [...tenants, tenant];
+    const newTenant = {...tenant, id:uuidv4() };
+    const newTenants = [...tenants, newTenant];
     setTenants(newTenants);
     localStorage.setItem('tenants', JSON.stringify(newTenants));
   }
