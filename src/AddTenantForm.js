@@ -20,7 +20,7 @@ function AddTenantForm() {
                 </select>
             </div>
             <div className="button-div">
-                <button type="submit" className="btn btn-dark custom-button">Submit</button>
+                <button type="button" className="btn btn-dark custom-button">Submit</button>
             </div>
         </form>
     );
