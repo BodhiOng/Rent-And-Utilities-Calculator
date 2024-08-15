@@ -1,9 +1,14 @@
 import './TenantList.css';
 
-function TenantList() {
+function TenantList({ tenants }) {
     return(
-        <div>
-            hello
+        <div className='tenant-list-container'>
+            <h2>Tenant List</h2>
+            <ul>
+                {tenants.map((tenant, index) => (
+                    <li key={index}>{tenant.tenantName} - {tenant.roomType}</li>
+                ))}
+            </ul>
         </div>
     );
 }
