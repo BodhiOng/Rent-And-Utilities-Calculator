@@ -1,14 +1,18 @@
-.tenant-list-div {
+.tenant-list-wrapper {
     background-color: rgb(73, 72, 83);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     border-radius: 10px;
 }
 
 .tenant-list-container {
-    height: 100%;
+    flex-grow: 1;
     background-color: rgb(73, 72, 83);
     border-radius: 0 0 10px 10px;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
 }
 
 .list-title {
