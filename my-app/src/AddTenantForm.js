@@ -19,6 +19,9 @@ function AddTenantForm() {
                     <option value='master'>Master</option>
                 </select>
             </div>
+            <div className="button-div">
+                <button type="submit" className="btn btn-dark custom-button">Submit</button>
+            </div>
         </form>
     );
 }
