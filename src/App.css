@@ -25,11 +25,11 @@ html, body {
   box-sizing: border-box;
 }
 
-.monthly-expenses-form {
+.bills-and-receipt {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 100%;
+  justify-content: space-evenly;
   box-sizing: border-box;
   margin-top: 20px;
   padding: 0 20px;

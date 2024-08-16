@@ -6,6 +6,7 @@ import TenantListForm from './TenantListForm';
 import MonthlyExpenses from './MonthlyExpenses';
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import ReceiptForm from './ReceiptForm';
 
 function App() {
   const [tenants, setTenants] = useState(() => {
@@ -52,9 +53,14 @@ function App() {
           <TenantListForm tenants={tenants} onDeleteTenant={handleDeleteTenant}/>
         </div>
       </div>
-      <div className='monthly-expenses-form'>
-        <MonthlyExpenses/>
-      </div>
+      <div className='bills-and-receipt'>
+        <div className='monthly-expenses-div-app'>
+          <MonthlyExpenses/>
+        </div>
+        <div className='receipt-form-div-app'>
+          <ReceiptForm/>
+        </div>
+      </div> 
     </div>
   );
 }

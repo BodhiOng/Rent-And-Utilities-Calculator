@@ -2,58 +2,43 @@ import { useState } from 'react';
 import './MonthlyExpenses.css';
 
 function MonthlyExpenses() {
-    const [monthlyRent, setMonthlyRent] = useState(0);
-    const [monthlyWaterBill, setMonthlyWaterBill] = useState(0);
-    const [monthlyWifiBill, setMonthlyWifiBill] = useState(0);
-    const [monthlyElectricityBill, setMonthlyElectricityBill] = useState(0);
-    
-    return(
+    const [expenses, setExpenses] = useState({
+        rent: 0,
+        water: 0,
+        wifi: 0,
+        electricity: 0
+    });
+
+    const handleChange = (e) => {
+        const { id, value } = e.target;
+        setExpenses(prevExpenses => ({
+            ...prevExpenses,
+            [id]: value
+        }));
+    };
+
+    return (
         <form>
             <div className='expenses-title'>
-                <p className='expenses-title-text'>Input your apartment unit's monthly expenses below (in Malaysian Ringgits)</p>
+                <p className='expenses-title-text'>Input your apartment unit's<br /> monthly expenses below<br /> (in Malaysian Ringgits)</p>
             </div>
             <div className='utilities-section'>
-                <div className='form-group'>
-                    <label htmlFor='monthlyRent'>Rent</label>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='monthlyRent'
-                        value={monthlyRent}
-                        onChange={(e) => setMonthlyRent(e.target.value)}
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='monthlyWaterBill'>Water</label>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='monthlyWaterBill'
-                        value={monthlyWaterBill}
-                        onChange={(e) => setMonthlyWaterBill(e.target.value)}
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='monthlyWifiBill'>Wifi</label>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='monthlyWifiBill'
-                        value={monthlyWifiBill}
-                        onChange={(e) => setMonthlyWifiBill(e.target.value)}
-                    />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='monthlyElectricityBill'>Electricity</label>
-                    <input
-                        type='text'
-                        className='form-control'
-                        id='monthlyElectricityBill'
-                        value={monthlyElectricityBill}
-                        onChange={(e) => setMonthlyElectricityBill(e.target.value)}
-                    />
-                </div>
+                {['rent', 'water', 'wifi', 'electricity'].map((item, index) => (
+                    <div key={index} className='form-group'>
+                        <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
+                        <input
+                            type='number'
+                            className='form-control'
+                            id={item}
+                            value={expenses[item]}
+                            onChange={handleChange}
+                        />
+                    </div>
+                ))}
             </div>
+            <div className="button-div">
+                <button type="submit" className="btn btn-dark custom-button">Submit</button>
+            </div>        
         </form>
     );
 }
