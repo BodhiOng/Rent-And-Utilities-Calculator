@@ -15,8 +15,13 @@ function App() {
   });
 
   const [formHeight, setFormHeight] = useState(0);
+  const [formWidth, setFormWidth] = useState(0);
+  const [receiptFormHeight, setReceiptFormHeight] = useState(0);
+
   const formRef = useRef(null);
-  
+  const monthlyExpensesRef = useRef(null);
+  const receiptFormRef = useRef(null);
+
   const handleAddTenant = (tenant) => {
     const newTenant = {...tenant, id:uuidv4() };
     const newTenants = [...tenants, newTenant];
@@ -35,7 +40,19 @@ function App() {
       setFormHeight(formRef.current.clientHeight);
     }
   }, []);
+  
+  useEffect(() => {
+    if (formRef.current) {
+      setFormWidth(formRef.current.clientWidth);
+    }
+  }, []);
 
+  useEffect(() => {
+    if (monthlyExpensesRef.current && receiptFormRef.current) {
+      setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
+    }
+  }, [formWidth, formHeight]);
+  
   useEffect(() => {
     localStorage.setItem('tenants', JSON.stringify(tenants));
   }, [tenants]);
@@ -49,15 +66,15 @@ function App() {
         <div className='add-tenant-form' ref={formRef}>
           <AddTenantForm onAddTenant={handleAddTenant}/>
         </div>
-        <div className='tenant-list-form' style={{ height : `${formHeight}px` }}>
+        <div className='tenant-list-form' style={{ height : `${formHeight}px` , width : `${formWidth}px` }}>
           <TenantListForm tenants={tenants} onDeleteTenant={handleDeleteTenant}/>
         </div>
       </div>
       <div className='bills-and-receipt'>
-        <div className='monthly-expenses-div-app'>
+        <div className='monthly-expenses-div-app' style={{ width : `${formWidth}px` }} ref={monthlyExpensesRef}>
           <MonthlyExpenses/>
         </div>
-        <div className='receipt-form-div-app'>
+        <div className='receipt-form-div-app' style={{ height : `${receiptFormHeight}px` ,width : `${formWidth}px` }} ref={receiptFormRef}>
           <ReceiptForm/>
         </div>
       </div> 

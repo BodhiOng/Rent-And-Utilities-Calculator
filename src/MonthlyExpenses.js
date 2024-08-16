@@ -25,7 +25,7 @@ function MonthlyExpenses() {
             <div className='utilities-section'>
                 {['rent', 'water', 'wifi', 'electricity'].map((item, index) => (
                     <div key={index} className='form-group'>
-                        <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</label>
+                        <label htmlFor={item}>{item.charAt(0).toUpperCase() + item.slice(1)}:</label>
                         <input
                             type='number'
                             className='form-control'
