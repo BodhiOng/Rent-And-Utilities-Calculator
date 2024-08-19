@@ -15,7 +15,7 @@ function TenantListForm({ tenants, onDeleteTenant, onUpdateDays }) {
                         <input
                             type="number"
                             className="days-input"
-                            value={tenant.daysStayed || 30} 
+                            value={tenant.daysStayed ?? 30} 
                             onChange={(e) => onUpdateDays(tenant.id, e.target.value)}
                             min="0"
                             max="31" 
@@ -30,9 +30,12 @@ function TenantListForm({ tenants, onDeleteTenant, onUpdateDays }) {
                 </div>
                 ))
             ) : (
-                <p>No tenants added yet.</p>
+                <p className='blank-message'>No tenants added yet.</p>
             )}
-            <p className="notice-text">*You can set the tenant's staying period using the customizable number boxes</p>            </div>
+            {tenants.length > 0 && (
+                <p className="notice-text">*You can set the tenant's staying period using the customizable number boxes</p>
+            )}            
+            </div>
         </div>
     );
 }

@@ -14,6 +14,13 @@ function App() {
     return savedTenants ? JSON.parse(savedTenants) : [];
   });
 
+  const [expenses, setExpenses] = useState({
+    rent: 0,
+    water: 0,
+    wifi: 0,
+    electricity: 0,
+  });
+
   const [formHeight, setFormHeight] = useState(0);
   const [formWidth, setFormWidth] = useState(0);
   const [receiptFormHeight, setReceiptFormHeight] = useState(0);
@@ -23,7 +30,7 @@ function App() {
   const receiptFormRef = useRef(null);
 
   const handleAddTenant = (tenant) => {
-    const newTenant = {...tenant, id:uuidv4(), daysstayed: 0};
+    const newTenant = {...tenant, id:uuidv4(), daysStayed: 30};
     const newTenants = [...tenants, newTenant];
     setTenants(newTenants);
     localStorage.setItem('tenants', JSON.stringify(newTenants));
@@ -43,6 +50,30 @@ function App() {
     localStorage.setItem('tenants', JSON.stringify(updatedTenants));
   }
 
+  const handleChangeExpenses = (id, value) => {
+    setExpenses((prevExpenses) => ({
+      ...prevExpenses,
+      [id]: value,
+    }));
+  };
+
+  const getAllData = () => {
+    const tenantInfo = tenants.map((tenant, index) => 
+      `Tenant ${index + 1}:\nName: ${tenant.tenantName}\nRoom Type: ${tenant.roomType}\nDays Stayed: ${tenant.daysStayed}`
+    ).join('\n\n');
+  
+    const expensesInfo = `
+      Rent: ${expenses.rent} MYR
+      Water: ${expenses.water} MYR
+      WiFi: ${expenses.wifi} MYR
+      Electricity: ${expenses.electricity} MYR
+    `;
+  
+    const allData = `Tenants Information:\n${tenantInfo}\n\nMonthly Expenses:\n${expensesInfo}`;
+  
+    alert(allData);
+  };
+  
   useEffect(() => {
     if (formRef.current) {
       setFormHeight(formRef.current.clientHeight);
@@ -74,7 +105,7 @@ function App() {
         <div className='add-tenant-form' ref={formRef}>
           <AddTenantForm onAddTenant={handleAddTenant}/>
         </div>
-        <div className='tenant-list-form' style={{ height : `${formHeight}px` , width : `${formWidth}px` }}>
+        <div className='tenant-list-form' style={{ height : `${formHeight}px`, width : `${formWidth}px` }}>
           <TenantListForm 
             tenants={tenants} 
             onDeleteTenant={handleDeleteTenant}
@@ -84,12 +115,13 @@ function App() {
       </div>
       <div className='bills-and-receipt'>
         <div className='monthly-expenses-div-app' style={{ width : `${formWidth}px` }} ref={monthlyExpensesRef}>
-          <MonthlyExpenses/>
+          <MonthlyExpenses onChangeExpenses={handleChangeExpenses}/>
         </div>
-        <div className='receipt-form-div-app' style={{ height : `${receiptFormHeight}px` ,width : `${formWidth}px` }} ref={receiptFormRef}>
+        <div className='receipt-form-div-app' style={{ height : `${receiptFormHeight}px`, width : `${formWidth}px` }} ref={receiptFormRef}>
           <ReceiptForm/>
         </div>
       </div> 
+      <button onClick={getAllData} className="btn btn-primary">Get All Data</button>
     </div>
   );
 }

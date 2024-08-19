@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './MonthlyExpenses.css';
 
-function MonthlyExpenses() {
+function MonthlyExpenses({ onChangeExpenses }) {
     const [expenses, setExpenses] = useState({
         rent: 0,
         water: 0,
@@ -11,10 +11,12 @@ function MonthlyExpenses() {
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        setExpenses(prevExpenses => ({
-            ...prevExpenses,
+        const updatedExpenses = {
+            ...expenses,
             [id]: value
-        }));
+        };
+        setExpenses(updatedExpenses);
+        onChangeExpenses(id, value);
     };
 
     return (
