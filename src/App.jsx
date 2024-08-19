@@ -23,7 +23,7 @@ function App() {
   const receiptFormRef = useRef(null);
 
   const handleAddTenant = (tenant) => {
-    const newTenant = {...tenant, id:uuidv4() };
+    const newTenant = {...tenant, id:uuidv4(), daysstayed: 0};
     const newTenants = [...tenants, newTenant];
     setTenants(newTenants);
     localStorage.setItem('tenants', JSON.stringify(newTenants));
@@ -34,6 +34,14 @@ function App() {
     setTenants(updatedTenants);
     localStorage.setItem('tenants', JSON.stringify(updatedTenants));
   };
+
+  const handleUpdatedDays = (tenantId, days) => {
+    const updatedTenants = tenants.map(tenant =>
+      tenant.id === tenantId ? {...tenant, daysStayed: parseInt(days,10) } : tenant
+    );
+    setTenants(updatedTenants);
+    localStorage.setItem('tenants', JSON.stringify(updatedTenants));
+  }
 
   useEffect(() => {
     if (formRef.current) {
@@ -67,7 +75,11 @@ function App() {
           <AddTenantForm onAddTenant={handleAddTenant}/>
         </div>
         <div className='tenant-list-form' style={{ height : `${formHeight}px` , width : `${formWidth}px` }}>
-          <TenantListForm tenants={tenants} onDeleteTenant={handleDeleteTenant}/>
+          <TenantListForm 
+            tenants={tenants} 
+            onDeleteTenant={handleDeleteTenant}
+            onUpdateDays={handleUpdatedDays}
+          />
         </div>
       </div>
       <div className='bills-and-receipt'>
