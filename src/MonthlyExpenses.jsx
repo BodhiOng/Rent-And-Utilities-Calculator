@@ -16,13 +16,13 @@ function MonthlyExpenses({ onChangeExpenses }) {
             [id]: value
         };
         setExpenses(updatedExpenses);
-        onChangeExpenses(id, value);
+        if (onChangeExpenses) onChangeExpenses(id, value);
     };
 
     return (
         <form>
             <div className='expenses-title'>
-                <p className='expenses-title-text'>Input your apartment unit's<br /> monthly expenses below<br /> (in Malaysian Ringgits)</p>
+                <p className='expenses-title-text'>Input your apartment unit's<br /> monthly expenses</p>
             </div>
             <div className='utilities-section'>
                 {['rent', 'water', 'wifi', 'electricity'].map((item, index) => (
