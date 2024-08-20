@@ -21,14 +21,24 @@ To set up the project locally, follow these steps:
 
    ```bash
    git clone https://github.com/BodhiOng/Rent-And-Utilities-Calculator.git
+   ```
+
+2. Navigate to the project directory:
+   ```bash
    cd Rent-And-Utilities-Calculator
    ```
 
-2. **Install dependencies**:
-
+3. Install the dependencies:
    ```bash
    npm install
    ```
+
+4. Start the development server:
+   ```bash
+   npm start
+   ```
+
+The app should be running on `http://localhost:3000/`.
 
 ## Usage
 
