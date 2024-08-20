@@ -11,11 +11,13 @@ import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function App() {
+  // State to manage tenants, initialized from localStoage if available
   const [tenants, setTenants] = useState(() => {
     const savedTenants = localStorage.getItem('tenants');
     return savedTenants ? JSON.parse(savedTenants) : [];
   });
 
+  // State to manage expenses, initialized from localStoage if available
   const [expenses, setExpenses] = useState(() => {
     const savedExpenses = localStorage.getItem('expenses')
     return savedExpenses ? JSON.parse(savedExpenses) : {
@@ -26,61 +28,71 @@ function App() {
     };
   });
 
+  // State to store dimensions of the form elements
   const [formHeight, setFormHeight] = useState(0);
   const [formWidth, setFormWidth] = useState(0);
   const [receiptFormHeight, setReceiptFormHeight] = useState(0);
 
+  // References to the form elements to measure their dimensions
   const formRef = useRef(null);
   const monthlyExpensesRef = useRef(null);
   const receiptFormRef = useRef(null);
 
+  // Function to add a new tenant
   const handleAddTenant = (tenant) => {
     const newTenant = {
       ...tenant, 
-      id:uuidv4(), 
-      daysStayed: 30
+      id:uuidv4(), // Generate a unique ID for each tenant
+      daysStayed: 30 // Default value for days stayed
     };
-    const newTenants = [...tenants, newTenant];
+    const newTenants = [...tenants, newTenant]; // Add new tenant to the list
     setTenants(newTenants);
-    localStorage.setItem('tenants', JSON.stringify(newTenants));
+    localStorage.setItem('tenants', JSON.stringify(newTenants)); // Save updated tenants to localStorage
   }
 
+  // Function to update the days stayed for a specific tenant
   const handleDeleteTenant = (tenantId) => {
     const updatedTenants = tenants.filter(tenant => tenant.id !== tenantId);
     setTenants(updatedTenants);
-    localStorage.setItem('tenants', JSON.stringify(updatedTenants));
+    localStorage.setItem('tenants', JSON.stringify(updatedTenants)); // Save updated tenants to localStorage
   };
 
+  // Function to update the days stayed for a specific tenant
   const handleUpdatedDays = (tenantId, days) => {
     const updatedTenants = tenants.map(tenant =>
       tenant.id === tenantId ? {...tenant, daysStayed: parseInt(days,10) } : tenant
     );
     setTenants(updatedTenants);
-    localStorage.setItem('tenants', JSON.stringify(updatedTenants));
+    localStorage.setItem('tenants', JSON.stringify(updatedTenants)); // Save updated tenants to localStorage
   }
 
+  // Function to hand;e the submission of expenses
   const handleExpensesSubmit = (submittedExpenses) => {
       setExpenses(submittedExpenses);
     };
 
+  // useEffect to set the height of the tenant form when the component is mounted
   useEffect(() => {
     if (formRef.current) {
       setFormHeight(formRef.current.clientHeight);
     }
   }, []);
   
+  // useEffect to set the width of the tenant form when the component is mounted
   useEffect(() => {
     if (formRef.current) {
       setFormWidth(formRef.current.clientWidth);
     }
   }, []);
 
+  // useEffect to set the height of the receipt form based on the height of the monthly expenses form
   useEffect(() => {
     if (monthlyExpensesRef.current && receiptFormRef.current) {
       setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
     }
   }, [formWidth, formHeight]);
   
+  // useEffect to save tenants to localStorage whenever they are updated
   useEffect(() => {
     localStorage.setItem('tenants', JSON.stringify(tenants));
   }, [tenants]);
@@ -124,7 +136,7 @@ function App() {
           ref={receiptFormRef}
         >
           <ReceiptForm
-            key={JSON.stringify(expenses)}
+            key={JSON.stringify(expenses)} // Ensure re-render when expenses change
             tenants={tenants}
             totalRent={parseFloat(expenses.rent) || 0}
             totalWifi={parseFloat(expenses.wifi) || 0}

@@ -1,17 +1,77 @@
-.header {
+/* Custom styles for the brand name in the navbar */
+.custom-navbar-brand {
+    margin: 0 !important;
+    font-weight: bold;
+    font-size: 2rem !important;
+}
+
+/* Custom styling for the navbar */
+.custom-navbar {
+    background-color: #131314;
+    font-family: Consolas, Arial;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100%;
-    padding: 20px;
-    background-color: #1c1c22;
 }
 
-.header p {
-    color: white;
-    font-family: Roboto, Montserrat;
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); 
+/* Container styling with relative positioning */
+.container-fluid.position-relative {
+    position: relative;
+    padding: 0 20px;
+    overflow: hidden;
+}
+
+/* Styling for the developer link */
+.custom-developer-link {
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    font-size: 0.9rem !important;
+}
+
+/* Responsive design for tablets and smaller screens */
+@media (max-width: 768px) {
+    .custom-developer-link {
+        display: none;
+    }
+
+    .custom-navbar {
+        height: auto;
+        padding: 10px 0;
+        flex-direction: column;
+    }
+
+    .custom-navbar-brand {
+        text-align: center;
+        width: 100%;
+        font-size: 1.5rem !important;
+    }
+
+    .container-fluid.position-relative {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+    }
+
+    .row.w-100.align-items-center {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Responsive design for very small screens */
+@media (max-width: 400px) {
+    .custom-navbar {
+        padding: 5px 0;
+    }
+
+    .custom-navbar-brand {
+        font-size: 1.2rem !important;
+    }
+
+    .container-fluid.position-relative {
+        padding: 0 5px;
+    }
 }

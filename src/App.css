@@ -24,3 +24,15 @@ html, body {
   height: auto;
   box-sizing: border-box;
 }
+
+@media (max-width: 768px) {
+  .tenant-section, .bills-and-receipt {
+    flex-direction: column;
+    align-items: center;
+    margin-inline: 5%;
+  }
+
+  .add-tenant-form, .tenant-list-form, .receipt-form {
+    max-width: 100%;
+  }
+}
