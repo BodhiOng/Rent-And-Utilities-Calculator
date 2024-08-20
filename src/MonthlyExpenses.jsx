@@ -1,28 +1,37 @@
 import { useState } from 'react';
 import './MonthlyExpenses.css';
 
-function MonthlyExpenses({ onChangeExpenses }) {
+function MonthlyExpenses({ onSubmitExpenses }) {
     const [expenses, setExpenses] = useState({
-        rent: 0,
-        water: 0,
-        wifi: 0,
-        electricity: 0
+        rent: '',
+        water: '',
+        wifi: '',
+        electricity: '',
     });
 
     const handleChange = (e) => {
         const { id, value } = e.target;
-        const updatedExpenses = {
-            ...expenses,
-            [id]: value
+        setExpenses(prevExpenses => ({
+            ...prevExpenses,
+            [id]: value 
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const parsedExpenses = {
+            rent: parseFloat(expenses.rent) || 0,
+            water: parseFloat(expenses.water) || 0,
+            wifi: parseFloat(expenses.wifi) || 0,
+            electricity: parseFloat(expenses.electricity) || 0,
         };
-        setExpenses(updatedExpenses);
-        if (onChangeExpenses) onChangeExpenses(id, value);
+        onSubmitExpenses(parsedExpenses);
     };
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <div className='expenses-title'>
-                <p className='expenses-title-text'>Input your apartment unit's<br /> monthly expenses</p>
+                <p className='expenses-title-text'>Input your apartment unit's<br /> monthly expenses (in MYR)</p>
             </div>
             <div className='utilities-section'>
                 {['rent', 'water', 'wifi', 'electricity'].map((item, index) => (

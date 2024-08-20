@@ -59,29 +59,9 @@ function App() {
     localStorage.setItem('tenants', JSON.stringify(updatedTenants));
   }
 
-  const getAllData = () => {
-    const tenantInfo = tenants.map((tenant, index) => 
-      `Tenant ${index + 1}:\nName: ${tenant.tenantName}\nRoom Type: ${tenant.roomType}\nDays Stayed: ${tenant.daysStayed}`
-    ).join('\n\n');
-  
-    const expensesInfo = `
-      Rent: ${expenses.rent} MYR
-      Water: ${expenses.water} MYR
-      WiFi: ${expenses.wifi} MYR
-      Electricity: ${expenses.electricity} MYR
-    `;
-  
-    const allData = `Tenants Information:\n${tenantInfo}\n\nMonthly Expenses:\n${expensesInfo}`;
-  
-    alert(allData);
-  };
-  
-  const handleExpensesChange = (id, value) => {
-    setExpenses(prevExpenses => ({
-      ...prevExpenses,
-      [id]: parseFloat(value) || 0,
-    }));
-  };
+  const handleExpensesSubmit = (submittedExpenses) => {
+      setExpenses(submittedExpenses);
+    };
 
   useEffect(() => {
     if (formRef.current) {
@@ -106,8 +86,9 @@ function App() {
   }, [tenants]);
 
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses));
-  }, [expenses]);
+    setTotalRent(expenses.rent);
+    setTotalElectricity(expenses.electricity)
+  }, [expenses, tenants]);
 
   return (
     <div className='parent-div'>
@@ -128,19 +109,26 @@ function App() {
       </div>
       <div className='bills-and-receipt'>
         <div className='monthly-expenses-div-app' style={{ width : `${formWidth}px` }} ref={monthlyExpensesRef}>
-          <MonthlyExpenses onChangeExpenses={handleExpensesChange} />        
+          <MonthlyExpenses onSubmitExpenses={handleExpensesSubmit} />        
         </div>
         <div className='receipt-form-div-app' style={{ height : `${receiptFormHeight}px`, width : `${formWidth}px` }} ref={receiptFormRef}>
           <ReceiptForm
+            key={JSON.stringify(expenses)}
             tenants={tenants}
-            totalRent={expenses.rent}
-            totalWifi={expenses.wifi}
-            totalWater={expenses.water}
-            totalElectricity={expenses.electricity}
+            totalRent={parseFloat(expenses.rent) || 0}
+            totalWifi={parseFloat(expenses.wifi) || 0}
+            totalWater={parseFloat(expenses.water) || 0}
+            totalElectricity={parseFloat(expenses.electricity) || 0}
           />
+          {console.log('ReceiptForm props:', {
+            tenants,
+            totalRent: parseFloat(expenses.rent) || 0,
+            totalWifi: parseFloat(expenses.wifi) || 0,
+            totalWater: parseFloat(expenses.water) || 0,
+            totalElectricity: parseFloat(expenses.electricity) || 0
+          })}
         </div>
       </div> 
-      <button onClick={getAllData} className="btn btn-primary">Get All Data</button>
     </div>
   );
 }
