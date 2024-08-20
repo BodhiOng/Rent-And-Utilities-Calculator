@@ -50,7 +50,7 @@ function App() {
     localStorage.setItem('tenants', JSON.stringify(newTenants)); // Save updated tenants to localStorage
   }
 
-  // Function to update the days stayed for a specific tenant
+  // Function to delete a tenant
   const handleDeleteTenant = (tenantId) => {
     const updatedTenants = tenants.filter(tenant => tenant.id !== tenantId);
     setTenants(updatedTenants);
@@ -66,7 +66,7 @@ function App() {
     localStorage.setItem('tenants', JSON.stringify(updatedTenants)); // Save updated tenants to localStorage
   }
 
-  // Function to hand;e the submission of expenses
+  // Function to handle the submission of expenses
   const handleExpensesSubmit = (submittedExpenses) => {
       setExpenses(submittedExpenses);
     };
