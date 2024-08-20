@@ -46,7 +46,31 @@ function ReceiptForm({ tenants, totalRent, totalWifi, totalWater, totalElectrici
             return { ...tenant, electricityShare };
         });
     };
-    
+
+    const copyToClipboard = () => {
+        const receiptContent =  (
+            tenants.map((tenant, index) => {
+                const tenantRentShare = rentShares.find(t => t.id === tenant.id)?.rentShare || 0;
+                const tenantElectricityShare = electricityShares.find(t => t.id === tenant.id)?.electricityShare || 0;
+                return (
+                    `***TENANT ${index + 1}***\n` +
+                    `Name: ${tenant.tenantName}\n` +
+                    `Room Type: ${tenant.roomType}\n` +
+                    `Days Stayed: ${tenant.daysStayed}\n` +
+                    `Rent Share: ${tenantRentShare.toFixed(2)} RM\n` +
+                    `Electricity Share: ${tenantElectricityShare.toFixed(2)} RM\n` +
+                    `Water Share: ${waterShare.toFixed(2)} RM\n` +
+                    `Wi-Fi Share: ${wifiShare.toFixed(2)} RM\n\n`
+                );
+            }).join('')
+        )
+
+        navigator.clipboard.writeText(receiptContent)
+            .then(() => alert('Receipt copied to clipboard!'))
+            .catch(err => console.error('Failed to copy!', err));
+    };
+
+
     return (
         <div className='receipt-form'>
             <div className='title'>
@@ -72,7 +96,7 @@ function ReceiptForm({ tenants, totalRent, totalWifi, totalWater, totalElectrici
                     "Add new tenants as desired, press submit to add after inputting tenant's name and room type. Ensure the tenant list is accurate before proceeding. Input your apartment unit's monthly expenses in the currency unit of Malaysian Ringgits. Once you've filled all input boxes of rent, wifi, electricity, and water; press submit on that form too. The receipt with calculated split will be displayed here."
                 )
             } readOnly />
-            <button>📄 Copy</button>
+            <button onClick={copyToClipboard}>📄 Copy</button>
         </div>
     );
 }
