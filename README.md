@@ -1,6 +1,6 @@
 # Rent and utilities calculator
 
-This a rent and utilities calculator app to manage tenants, track monthly expenses, and generate receipts for singular apartment unit. This app allows users to easily input and manage tenant information, calculate shared expenses, and generate a receipt.
+This a rent and utilities calculator app to manage tenants, track monthly expenses, and generate receipts for singular apartment unit.
 
 ## Features
 
