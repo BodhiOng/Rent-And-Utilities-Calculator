@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+
 import Header from './Header';
 import AddTenantForm from './AddTenantForm';
 import TenantListForm from './TenantListForm';
 import MonthlyExpenses from './MonthlyExpenses';
+import ReceiptForm from './ReceiptForm';
+
 import { useEffect, useRef, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import ReceiptForm from './ReceiptForm';
 
 function App() {
   const [tenants, setTenants] = useState(() => {
@@ -92,7 +94,12 @@ function App() {
         <div className='add-tenant-form' ref={formRef}>
           <AddTenantForm onAddTenant={handleAddTenant}/>
         </div>
-        <div className='tenant-list-form' style={{ height : `${formHeight}px`, width : `${formWidth}px` }}>
+        <div className='tenant-list-form' 
+          style={{ 
+            height : `${formHeight}px`, 
+            width : `${formWidth}px` 
+          }}
+        >
           <TenantListForm 
             tenants={tenants} 
             onDeleteTenant={handleDeleteTenant}
@@ -101,10 +108,21 @@ function App() {
         </div>
       </div>
       <div className='bills-and-receipt'>
-        <div className='monthly-expenses-div-app' style={{ width : `${formWidth}px` }} ref={monthlyExpensesRef}>
+        <div className='monthly-expenses-div-app' 
+          style={{ 
+            width : `${formWidth}px` 
+          }} 
+          ref={monthlyExpensesRef}
+        >
           <MonthlyExpenses onSubmitExpenses={handleExpensesSubmit} />        
         </div>
-        <div className='receipt-form-div-app' style={{ height : `${receiptFormHeight}px`, width : `${formWidth}px` }} ref={receiptFormRef}>
+        <div className='receipt-form-div-app' 
+          style={{ 
+            height : `${receiptFormHeight}px`, 
+            width : `${formWidth}px` 
+          }} 
+          ref={receiptFormRef}
+        >
           <ReceiptForm
             key={JSON.stringify(expenses)}
             tenants={tenants}
