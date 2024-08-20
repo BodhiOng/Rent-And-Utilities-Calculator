@@ -27,8 +27,6 @@ function App() {
   const [formHeight, setFormHeight] = useState(0);
   const [formWidth, setFormWidth] = useState(0);
   const [receiptFormHeight, setReceiptFormHeight] = useState(0);
-  const [totalRent, setTotalRent] = useState(0);
-  const [totalElectricity, setTotalElectricity] = useState(0);
 
   const formRef = useRef(null);
   const monthlyExpensesRef = useRef(null);
@@ -85,11 +83,6 @@ function App() {
     localStorage.setItem('tenants', JSON.stringify(tenants));
   }, [tenants]);
 
-  useEffect(() => {
-    setTotalRent(expenses.rent);
-    setTotalElectricity(expenses.electricity)
-  }, [expenses, tenants]);
-
   return (
     <div className='parent-div'>
       <div className='header'>
@@ -120,13 +113,6 @@ function App() {
             totalWater={parseFloat(expenses.water) || 0}
             totalElectricity={parseFloat(expenses.electricity) || 0}
           />
-          {console.log('ReceiptForm props:', {
-            tenants,
-            totalRent: parseFloat(expenses.rent) || 0,
-            totalWifi: parseFloat(expenses.wifi) || 0,
-            totalWater: parseFloat(expenses.water) || 0,
-            totalElectricity: parseFloat(expenses.electricity) || 0
-          })}
         </div>
       </div> 
     </div>
