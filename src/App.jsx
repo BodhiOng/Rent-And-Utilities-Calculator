@@ -71,27 +71,27 @@ function App() {
       setExpenses(submittedExpenses);
     };
 
-  // useEffect to set the height of the tenant form when the component is mounted
+  // useEffect to update form components' dimensions on window resize
   useEffect(() => {
-    if (formRef.current) {
-      setFormHeight(formRef.current.clientHeight);
+    const updateDimensions = () => {
+      if (formRef.current) {
+        setFormHeight(formRef.current.clientHeight);
+        setFormWidth(formRef.current.clientWidth);
+      }
+      if (monthlyExpensesRef.current && receiptFormRef.current) {
+        setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
+      }
     }
-  }, []);
-  
-  // useEffect to set the width of the tenant form when the component is mounted
-  useEffect(() => {
-    if (formRef.current) {
-      setFormWidth(formRef.current.clientWidth);
-    }
-  }, []);
 
-  // useEffect to set the height of the receipt form based on the height of the monthly expenses form
-  useEffect(() => {
-    if (monthlyExpensesRef.current && receiptFormRef.current) {
-      setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
-    }
-  }, [formWidth, formHeight]);
-  
+    updateDimensions();
+
+    window.addEventListener('resize', updateDimensions);
+
+    return () => {
+      window.removeEventListener('resize', updateDimensions);
+    };
+  }, []);
+    
   // useEffect to save tenants to localStorage whenever they are updated
   useEffect(() => {
     localStorage.setItem('tenants', JSON.stringify(tenants));
