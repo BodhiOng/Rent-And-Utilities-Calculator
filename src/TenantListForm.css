@@ -85,3 +85,9 @@
     margin-block: 10px;
 }
 
+@media (max-width: 768px) {
+    .custom-button {
+        margin-left: 20px !important;
+    }
+}
+

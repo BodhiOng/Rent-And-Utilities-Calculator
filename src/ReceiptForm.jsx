@@ -106,7 +106,13 @@ function ReceiptForm({ tenants, totalRent, totalWifi, totalWater, totalElectrici
                         }).join('')
                     ) : (
                         // Placeholder text when no tenants are added
-                        "Add new tenants as desired, press submit to add after inputting tenant's name and room type. Ensure the tenant list is accurate before proceeding. Input your apartment unit's monthly expenses in the currency unit of Malaysian Ringgits. Once you've filled all input boxes of rent, wifi, electricity, and water; press submit on that form too. The receipt with calculated split will be displayed here."
+                        "1. Add new tenants as desired\n" +
+                        "2. Press submit to add after inputting tenant's name and room type.\n" + 
+                        "3. Ensure the tenant list is accurate before proceeding.\n" + 
+                        "4. Input your apartment unit's monthly expenses in the currency unit of Malaysian Ringgits (MYR).\n" +
+                        "5. Once you've filled all input boxes of rent, wifi, electricity, and water\n" +
+                        "6. Press submit on that form too.\n" + 
+                        "7. The receipt with calculated split will be displayed here.\n"
                     )
                 } 
                 readOnly 
