@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Rent-And-Utilities-Calculator/static/css/main.99564382.css",
-    "main.js": "/Rent-And-Utilities-Calculator/static/js/main.9da1a9b0.js",
+    "main.css": "/Rent-And-Utilities-Calculator/static/css/main.a4b57dd1.css",
+    "main.js": "/Rent-And-Utilities-Calculator/static/js/main.7f0bd81f.js",
     "index.html": "/Rent-And-Utilities-Calculator/index.html",
-    "main.99564382.css.map": "/Rent-And-Utilities-Calculator/static/css/main.99564382.css.map",
-    "main.9da1a9b0.js.map": "/Rent-And-Utilities-Calculator/static/js/main.9da1a9b0.js.map"
+    "main.a4b57dd1.css.map": "/Rent-And-Utilities-Calculator/static/css/main.a4b57dd1.css.map",
+    "main.7f0bd81f.js.map": "/Rent-And-Utilities-Calculator/static/js/main.7f0bd81f.js.map"
   },
   "entrypoints": [
-    "static/css/main.99564382.css",
-    "static/js/main.9da1a9b0.js"
+    "static/css/main.a4b57dd1.css",
+    "static/js/main.7f0bd81f.js"
   ]
 }
