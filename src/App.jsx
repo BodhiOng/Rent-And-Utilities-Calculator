@@ -79,7 +79,9 @@ function App() {
         setFormWidth(formRef.current.clientWidth);
       }
       if (monthlyExpensesRef.current && receiptFormRef.current) {
-        setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
+        setTimeout(() => {
+          setReceiptFormHeight(monthlyExpensesRef.current.clientHeight);
+        }, 0);
       }
     }
 
