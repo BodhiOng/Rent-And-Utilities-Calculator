@@ -38,7 +38,7 @@ To set up the project locally, follow these steps:
    npm start
    ```
 
-The app should be running on `http://localhost:3000/`.
+The app should be running on `http://localhost:3000/Rent-And-Utilities-Calculator`.
 
 ## Usage
 
