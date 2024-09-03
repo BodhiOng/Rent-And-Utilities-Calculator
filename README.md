@@ -9,10 +9,6 @@ This is a rent and utilities calculator app to manage tenants, track monthly exp
 - Automatically calculate rent and utility shares for each tenant.
 - Generate a receipt that can be copied to the clipboard.
 
-## Live Demo
-
-You can try the live demo of the app here at: [Rent And Utilities Calculator](https://bodhiong.github.io/Rent-And-Utilities-Calculator/).
-
 ## Installation
 
 To set up the project locally, follow these steps:
